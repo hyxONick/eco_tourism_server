@@ -78,15 +78,3 @@ docker system prune -a
 
 - Ensure that the Dockerfile files and source code for all microservices are located in their respective `context` paths.
 - If you modify service configurations or Dockerfiles, rebuild the images to apply changes.
-
-## Contributing
-
-Contributions are welcome! Please refer to the [contributing guidelines](CONTRIBUTING.md) for details.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
-```
-
-You can replace `<repository-url>` and `<repository-directory>` with the actual URL and directory name of your repository. Adjust other sections as needed based on your project specifics.
