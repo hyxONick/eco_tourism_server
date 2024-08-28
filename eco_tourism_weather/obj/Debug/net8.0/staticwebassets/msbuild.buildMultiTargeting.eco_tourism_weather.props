@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\eco_tourism_weather.props" />
+</Project>

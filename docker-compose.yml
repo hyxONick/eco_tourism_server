@@ -1,0 +1,59 @@
+version: '3.8'
+services:
+  eco_tourism_gateway:
+    image: eco_tourism_gateway
+    build:
+      context: ./eco_tourism_gateway
+    ports:
+      - "8080:80"
+    networks:
+      - eco_tourism_network
+
+  eco_tourism_user:
+    image: eco_tourism_user
+    build:
+      context: ./eco_tourism_user
+    ports:
+      - "8081:80"
+    networks:
+      - eco_tourism_network
+
+  eco_tourism_tourist:
+    image: eco_tourism_tourist
+    build:
+      context: ./eco_tourism_tourist
+    ports:
+      - "8082:80"
+    networks:
+      - eco_tourism_network
+
+  eco_tourism_accommodation:
+    image: eco_tourism_accommodation
+    build:
+      context: ./eco_tourism_accommodation
+    ports:
+      - "8083:80"
+    networks:
+      - eco_tourism_network
+
+  eco_tourism_weather:
+    image: eco_tourism_weather
+    build:
+      context: ./eco_tourism_weather
+    ports:
+      - "8084:80"
+    networks:
+      - eco_tourism_network  
+
+  eco_tourism_outdoor:
+    image: eco_tourism_outdoor
+    build:
+      context: ./eco_tourism_outdoor
+    ports:
+      - "8085:80"
+    networks:
+      - eco_tourism_network  
+
+networks:
+  eco_tourism_network:
+    driver: bridge

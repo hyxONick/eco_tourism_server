@@ -1,0 +1,6 @@
+@eco_tourism_accommodation_HostAddress = http://localhost:5161
+
+GET {{eco_tourism_accommodation_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

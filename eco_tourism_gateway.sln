@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eco_tourism_user", "eco_tourism_user\eco_tourism_user.csproj", "{37DB6937-1F52-415E-A958-1CF971A75FE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eco_tourism_tourist", "eco_tourism_tourist\eco_tourism_tourist.csproj", "{3AEE4373-8303-4204-8EA0-6F7DA9570F81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eco_tourism_accommodation", "eco_tourism_accommodation\eco_tourism_accommodation.csproj", "{93F95DE9-AA40-4B29-9AC7-F63507FEA63E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eco_tourism_weather", "eco_tourism_weather\eco_tourism_weather.csproj", "{F4E477DD-8280-47B3-8DE9-BD657980C100}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eco_tourism_outdoor", "eco_tourism_outdoor\eco_tourism_outdoor.csproj", "{4257378F-E5C2-4689-A565-709F8D9650AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eco_tourism_gateway", "eco_tourism_gateway\eco_tourism_gateway.csproj", "{222B9459-5007-48BD-BC02-78CBE9C6C00C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{37DB6937-1F52-415E-A958-1CF971A75FE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37DB6937-1F52-415E-A958-1CF971A75FE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37DB6937-1F52-415E-A958-1CF971A75FE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37DB6937-1F52-415E-A958-1CF971A75FE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AEE4373-8303-4204-8EA0-6F7DA9570F81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AEE4373-8303-4204-8EA0-6F7DA9570F81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AEE4373-8303-4204-8EA0-6F7DA9570F81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AEE4373-8303-4204-8EA0-6F7DA9570F81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93F95DE9-AA40-4B29-9AC7-F63507FEA63E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93F95DE9-AA40-4B29-9AC7-F63507FEA63E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93F95DE9-AA40-4B29-9AC7-F63507FEA63E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93F95DE9-AA40-4B29-9AC7-F63507FEA63E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4E477DD-8280-47B3-8DE9-BD657980C100}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4E477DD-8280-47B3-8DE9-BD657980C100}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4E477DD-8280-47B3-8DE9-BD657980C100}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4E477DD-8280-47B3-8DE9-BD657980C100}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4257378F-E5C2-4689-A565-709F8D9650AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4257378F-E5C2-4689-A565-709F8D9650AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4257378F-E5C2-4689-A565-709F8D9650AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4257378F-E5C2-4689-A565-709F8D9650AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{222B9459-5007-48BD-BC02-78CBE9C6C00C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{222B9459-5007-48BD-BC02-78CBE9C6C00C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{222B9459-5007-48BD-BC02-78CBE9C6C00C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{222B9459-5007-48BD-BC02-78CBE9C6C00C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
