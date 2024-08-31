@@ -1,4 +1,17 @@
+using Ocelot.DependencyInjection;
+using Ocelot.Middleware;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.WebHost.UseUrls("http://0.0.0.0:80");
+
+// var envFile = builder.Environment.IsDevelopment() ? "ocelot.json" : "ocelot-production.json";
+// builder.Configuration.AddJsonFile(envFile, optional: false, reloadOnChange: true);
+builder.Configuration.AddJsonFile("ocelot-production.json", optional: false, reloadOnChange: true);
+builder.Services.AddOcelot();
+
+// builder.Services.AddReverseProxy()
+//     .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -14,7 +27,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
+
+await app.UseOcelot();
 
 var summaries = new[]
 {

@@ -1,56 +1,56 @@
 version: '3.8'
 services:
-  eco_tourism_gateway:
+  gateway:
     image: eco_tourism_gateway
     build:
       context: ./eco_tourism_gateway
     ports:
-      - "8080:80"
+      - "8090:80"
     networks:
       - eco_tourism_network
 
-  eco_tourism_user:
+  user:
     image: eco_tourism_user
     build:
       context: ./eco_tourism_user
     ports:
-      - "8081:80"
+      - "8091:80"
     networks:
       - eco_tourism_network
 
-  eco_tourism_tourist:
+  tourist:
     image: eco_tourism_tourist
     build:
       context: ./eco_tourism_tourist
     ports:
-      - "8082:80"
+      - "8092:80"
     networks:
       - eco_tourism_network
 
-  eco_tourism_accommodation:
+  accommodation:
     image: eco_tourism_accommodation
     build:
       context: ./eco_tourism_accommodation
     ports:
-      - "8083:80"
+      - "8093:80"
     networks:
       - eco_tourism_network
 
-  eco_tourism_weather:
+  weather:
     image: eco_tourism_weather
     build:
       context: ./eco_tourism_weather
     ports:
-      - "8084:80"
+      - "8094:80"
     networks:
       - eco_tourism_network  
 
-  eco_tourism_outdoor:
+  outdoor:
     image: eco_tourism_outdoor
     build:
       context: ./eco_tourism_outdoor
     ports:
-      - "8085:80"
+      - "8095:80"
     networks:
       - eco_tourism_network  
 

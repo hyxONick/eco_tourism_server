@@ -1,0 +1,80 @@
+{
+    "Routes": [
+      {
+        "DownstreamPathTemplate": "/{everything}",
+        "DownstreamScheme": "http",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "gateway",
+            "Port": 8090
+          }
+        ],
+        "UpstreamPathTemplate": "/gateway/{everything}",
+        "UpstreamHttpMethod": [ "GET", "POST" ]
+      },
+      {
+        "DownstreamPathTemplate": "/{everything}",
+        "DownstreamScheme": "http",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "user",
+            "Port": 8091
+          }
+        ],
+        "UpstreamPathTemplate": "/user/{everything}",
+        "UpstreamHttpMethod": [ "GET", "POST" ]
+      },
+      {
+        "DownstreamPathTemplate": "/{everything}",
+        "DownstreamScheme": "http",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "tourist",
+            "Port": 8092
+          }
+        ],
+        "UpstreamPathTemplate": "/tourist/{everything}",
+        "UpstreamHttpMethod": [ "GET", "POST" ]
+      },
+      {
+        "DownstreamPathTemplate": "/{everything}",
+        "DownstreamScheme": "http",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "accommodation",
+            "Port": 8093
+          }
+        ],
+        "UpstreamPathTemplate": "/accommodation/{everything}",
+        "UpstreamHttpMethod": [ "GET", "POST" ]
+      },
+      {
+        "DownstreamPathTemplate": "/{everything}",
+        "DownstreamScheme": "http",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "weather",
+            "Port": 8094
+          }
+        ],
+        "UpstreamPathTemplate": "/weather/{everything}",
+        "UpstreamHttpMethod": [ "GET", "POST" ]
+      },
+      {
+        "DownstreamPathTemplate": "/{everything}",
+        "DownstreamScheme": "http",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "outdoor",
+            "Port": 8095
+          }
+        ],
+        "UpstreamPathTemplate": "/outdoor/{everything}",
+        "UpstreamHttpMethod": [ "GET", "POST" ]
+      }
+    ],
+    "GlobalConfiguration": {
+      "BaseUrl": "http://gateway:8090"
+    }
+  }
+  
