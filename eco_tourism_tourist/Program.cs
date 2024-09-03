@@ -1,10 +1,36 @@
+// using tourist.Models; // Import the namespace for models
+using eco_tourism_tourist.DB;
+// using tourist.Services; // Import the namespace for services
+using Microsoft.Extensions.DependencyInjection; // Import the namespace for dependency injection
+using System.Diagnostics; // Import the namespace for debugging output
+using Microsoft.EntityFrameworkCore;
+using eco_tourism_tourist.Services; // Import the namespace for Entity Framework Core, used for database context
+
+
 var builder = WebApplication.CreateBuilder(args);
 
-builder.WebHost.UseUrls("http://0.0.0.0:80");
+if (builder.Environment.IsProduction())
+{
+    builder.WebHost.UseUrls("http://0.0.0.0:80");
+}
+
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+// Add services to the container.
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+var connectionString = "server=localhost;database=eco_tourism;user=root;password=root"; // MySQL database connection string
+
+// Register the database context
+builder.Services.AddDbContext<EcoTourismTouristContext>(options =>
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+
+// Register services
+builder.Services.AddScoped<ISceneryInfoService, SceneryInfoService>();
+builder.Services.AddScoped<ITouristInfoService, TouristInfoService>();
+builder.Services.AddScoped<ITouristOrderInfoService, TouristOrderInfoService>();
 
 var app = builder.Build();
 
@@ -15,6 +41,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.MapControllers();
 // app.UseHttpsRedirection();
 
 var summaries = new[]
