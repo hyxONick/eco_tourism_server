@@ -11,6 +11,20 @@ This project consists of multiple microservices for an eco-tourism application, 
 - `eco_tourism_weather` - Weather Service
 - `eco_tourism_outdoor` - Outdoor Activities Service
 
+## Development:
+
+When you completed the DB Model, you can pull migrations to MYSQL
+```bash
+dotnet ef migrations add InitialCreate
+dotnet ef database update
+```
+
+```startup:
+dotnet build
+dotnet watch/run //hot update
+```
+
+
 ## System Requirements
 
 - Docker
