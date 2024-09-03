@@ -6,7 +6,7 @@
         "DownstreamHostAndPorts": [
           {
             "Host": "gateway",
-            "Port": 8090
+            "Port": 80
           }
         ],
         "UpstreamPathTemplate": "/gateway/{everything}",
@@ -18,7 +18,7 @@
         "DownstreamHostAndPorts": [
           {
             "Host": "user",
-            "Port": 8091
+            "Port": 80
           }
         ],
         "UpstreamPathTemplate": "/user/{everything}",
@@ -30,7 +30,7 @@
         "DownstreamHostAndPorts": [
           {
             "Host": "tourist",
-            "Port": 8092
+            "Port": 80
           }
         ],
         "UpstreamPathTemplate": "/tourist/{everything}",
@@ -42,7 +42,7 @@
         "DownstreamHostAndPorts": [
           {
             "Host": "accommodation",
-            "Port": 8093
+            "Port": 80
           }
         ],
         "UpstreamPathTemplate": "/accommodation/{everything}",
@@ -54,7 +54,7 @@
         "DownstreamHostAndPorts": [
           {
             "Host": "weather",
-            "Port": 8094
+            "Port": 80
           }
         ],
         "UpstreamPathTemplate": "/weather/{everything}",
@@ -66,7 +66,7 @@
         "DownstreamHostAndPorts": [
           {
             "Host": "outdoor",
-            "Port": 8095
+            "Port": 80
           }
         ],
         "UpstreamPathTemplate": "/outdoor/{everything}",
