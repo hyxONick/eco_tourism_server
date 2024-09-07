@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace eco_tourism_tourist.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class TouristInfoController : ControllerBase
     {
         private readonly ITouristInfoService _touristInfoService;

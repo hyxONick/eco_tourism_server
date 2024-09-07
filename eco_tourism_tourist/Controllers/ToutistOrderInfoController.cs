@@ -5,7 +5,7 @@ using eco_tourism_tourist.Services;
 namespace eco_tourism_tourist.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class TouristOrderInfoController : ControllerBase
     {
         private readonly ITouristOrderInfoService _touristOrderInfoService;

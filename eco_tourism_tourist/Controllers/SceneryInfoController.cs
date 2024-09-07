@@ -6,7 +6,7 @@ using eco_tourism_tourist.Models;
 namespace eco_tourism_tourist.Controllers 
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class SceneryInfoController : ControllerBase
     {
         private readonly ISceneryInfoService _sceneryInfoService;

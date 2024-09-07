@@ -10,7 +10,7 @@
           }
         ],
         "UpstreamPathTemplate": "/gateway/{everything}",
-        "UpstreamHttpMethod": [ "GET", "POST" ]
+        "UpstreamHttpMethod": [ "GET", "POST", "OPTIONS" ]
       },
       {
         "DownstreamPathTemplate": "/{everything}",
@@ -22,7 +22,7 @@
           }
         ],
         "UpstreamPathTemplate": "/user/{everything}",
-        "UpstreamHttpMethod": [ "GET", "POST" ]
+        "UpstreamHttpMethod": [ "GET", "POST", "OPTIONS" ]
       },
       {
         "DownstreamPathTemplate": "/{everything}",
@@ -34,7 +34,7 @@
           }
         ],
         "UpstreamPathTemplate": "/tourist/{everything}",
-        "UpstreamHttpMethod": [ "GET", "POST" ]
+        "UpstreamHttpMethod": [ "GET", "POST", "OPTIONS" ]
       },
       {
         "DownstreamPathTemplate": "/{everything}",
@@ -46,7 +46,7 @@
           }
         ],
         "UpstreamPathTemplate": "/accommodation/{everything}",
-        "UpstreamHttpMethod": [ "GET", "POST" ]
+        "UpstreamHttpMethod": [ "GET", "POST", "OPTIONS" ]
       },
       {
         "DownstreamPathTemplate": "/{everything}",
@@ -58,7 +58,7 @@
           }
         ],
         "UpstreamPathTemplate": "/weather/{everything}",
-        "UpstreamHttpMethod": [ "GET", "POST" ]
+        "UpstreamHttpMethod": [ "GET", "POST", "OPTIONS" ]
       },
       {
         "DownstreamPathTemplate": "/{everything}",
@@ -70,7 +70,7 @@
           }
         ],
         "UpstreamPathTemplate": "/outdoor/{everything}",
-        "UpstreamHttpMethod": [ "GET", "POST" ]
+        "UpstreamHttpMethod": [ "GET", "POST", "OPTIONS" ]
       }
     ],
     "GlobalConfiguration": {
