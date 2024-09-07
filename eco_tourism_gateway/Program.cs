@@ -3,11 +3,18 @@ using Ocelot.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.WebHost.UseUrls("http://0.0.0.0:80");
+// builder.WebHost.UseUrls("http://0.0.0.0:80");
+if (builder.Environment.IsProduction())
+{
+    builder.WebHost.UseUrls("http://0.0.0.0:80");
+    builder.Configuration.AddJsonFile("ocelot-production.json", optional: false, reloadOnChange: true);
+} else {
+    builder.Configuration.AddJsonFile("ocelot.json", optional: false, reloadOnChange: true);
+}
 
 // var envFile = builder.Environment.IsDevelopment() ? "ocelot.json" : "ocelot-production.json";
 // builder.Configuration.AddJsonFile(envFile, optional: false, reloadOnChange: true);
-builder.Configuration.AddJsonFile("ocelot-production.json", optional: false, reloadOnChange: true);
+
 builder.Services.AddOcelot();
 
 // builder.Services.AddReverseProxy()
@@ -17,6 +24,18 @@ builder.Services.AddOcelot();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Configure CORS to allow all origins
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        policy =>
+        {
+            policy.AllowAnyOrigin() // Allow all origins
+                  .AllowAnyHeader() // Allow all headers
+                  .AllowAnyMethod(); // Allow all HTTP methods
+        });
+});
 
 var app = builder.Build();
 
@@ -51,6 +70,7 @@ app.MapGet("/weatherforecast", () =>
 .WithName("GetWeatherForecast")
 .WithOpenApi();
 
+app.UseCors("AllowAll"); // Apply the CORS policy
 app.Run();
 
 record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)

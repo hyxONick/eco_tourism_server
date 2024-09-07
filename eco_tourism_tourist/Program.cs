@@ -32,6 +32,18 @@ builder.Services.AddScoped<ISceneryInfoService, SceneryInfoService>();
 builder.Services.AddScoped<ITouristInfoService, TouristInfoService>();
 builder.Services.AddScoped<ITouristOrderInfoService, TouristOrderInfoService>();
 
+// Configure CORS to allow all origins
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        policy =>
+        {
+            policy.AllowAnyOrigin() // Allow all origins
+                  .AllowAnyHeader() // Allow all headers
+                  .AllowAnyMethod(); // Allow all HTTP methods
+        });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -64,6 +76,7 @@ app.MapGet("/weatherforecast", () =>
 .WithName("GetWeatherForecast")
 .WithOpenApi();
 
+app.UseCors("AllowAll"); // Apply the CORS policy
 app.Run();
 
 record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
