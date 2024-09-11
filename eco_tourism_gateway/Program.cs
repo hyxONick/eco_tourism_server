@@ -1,5 +1,8 @@
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
+using Microsoft.EntityFrameworkCore;
+using eco_tourism_gateway.DB;
+using eco_tourism_gateway.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +28,11 @@ builder.Services.AddOcelot();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+var connectionString = "server=localhost;database=eco_tourism;user=root;password=root"; // MySQL database connection string
+
+builder.Services.AddDbContext<EcoEventLogContext>(options =>
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+
 // Configure CORS to allow all origins
 builder.Services.AddCors(options =>
 {
@@ -38,6 +46,21 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+
+// // Logger Event
+// app.Use(async (context, next) =>
+// {
+//     var requestPath = context.Request.Path;
+//     var requestMethod = context.Request.Method;
+
+//     Console.WriteLine($"Request Path: {requestPath}, Request Method: {requestMethod}");
+
+
+//     await next();
+// });
+
+// Use the custom request logging middleware
+app.UseMiddleware<LoggingMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
