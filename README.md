@@ -15,6 +15,11 @@ This project consists of multiple microservices for an eco-tourism application, 
 
 When you completed the DB Model, you can pull migrations to MYSQL
 ```bash
+
+dotnet add package Microsoft.EntityFrameworkCore
+dotnet add package Pomelo.EntityFrameworkCore.MySql
+dotnet add package Microsoft.EntityFrameworkCore.Design
+
 dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```
