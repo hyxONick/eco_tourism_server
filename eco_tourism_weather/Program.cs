@@ -1,3 +1,8 @@
+using eco_tourism_weather.DB;
+using Microsoft.EntityFrameworkCore;
+using eco_tourism_weather.Services; // Import the namespace for Entity Framework Core, used for database context
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 if (builder.Environment.IsProduction())
@@ -5,10 +10,21 @@ if (builder.Environment.IsProduction())
     builder.WebHost.UseUrls("http://0.0.0.0:80");
 }
 
+// http://api.weatherapi.com/v1/current.json /forecast.json   https://www.weatherapi.com/docs/#intro-request
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+var connectionString = "server=localhost;database=eco_tourism;user=root;password=root"; // MySQL database connection string
+
+// Register the database context
+builder.Services.AddDbContext<EcoTourismWeatherContext>(options =>
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+
+builder.Services.AddHttpClient<IWeatherInfoService, WeatherInfoService>(); 
+builder.Services.AddScoped<IWeatherInfoService, WeatherInfoService>();
 
 // Configure CORS to allow all origins
 builder.Services.AddCors(options =>
@@ -31,6 +47,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.MapControllers();
 // app.UseHttpsRedirection();
 
 var summaries = new[]
