@@ -1,3 +1,7 @@
+using eco_tourism_accommodation.DB;
+using eco_tourism_accommodation.Services;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 if (builder.Environment.IsProduction())
@@ -7,8 +11,21 @@ if (builder.Environment.IsProduction())
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+var connectionString =
+    "server=localhost;database=eco_tourism;user=root;password=lwh971213";
+
+// Register the database context
+builder.Services.AddDbContext<EcoTourismAccommodationContext>(options =>
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+
+// register services
+builder.Services.AddScoped<IRewardService, RewardService>();
+builder.Services.AddScoped<IBookingService, BookingService>();
+builder.Services.AddScoped<ICustomerService, CustomerService>();
 
 // Configure CORS to allow all origins
 builder.Services.AddCors(options =>
@@ -17,9 +34,14 @@ builder.Services.AddCors(options =>
         policy =>
         {
             policy.AllowAnyOrigin() // Allow all origins
-                  .AllowAnyHeader() // Allow all headers
-                  .AllowAnyMethod(); // Allow all HTTP methods
+                .AllowAnyHeader() // Allow all headers
+                .AllowAnyMethod(); // Allow all HTTP methods
         });
+});
+
+builder.Services.AddRouting(options =>
+{
+    options.LowercaseUrls = true;
 });
 
 var app = builder.Build();
@@ -31,32 +53,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.MapControllers();
+
 // app.UseHttpsRedirection();
-
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
 
 app.UseCors("AllowAll"); // Apply the CORS policy
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
