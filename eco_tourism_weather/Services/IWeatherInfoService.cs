@@ -40,10 +40,11 @@ namespace eco_tourism_weather.Services
         public async Task<WeatherInfo> GetWeatherAsync(string cityName)
         {
             var today = DateTime.Today;
+            var tomorrow = today.AddDays(1);
 
             // Step 1: Check if the weather info for today already exists in the database
             var weatherInfo = await _context.WeatherInfos
-                .Where(w => w.Name == cityName && w.Localtime.Date == today)
+                .Where(w => w.Name == cityName && w.Localtime >= today && w.Localtime < tomorrow)
                 .FirstOrDefaultAsync();
 
             if (weatherInfo != null)
