@@ -15,9 +15,29 @@ public class BookingController : ControllerBase
         _bookingService = bookingService;
     }
 
-    [HttpPost("book-room")]
-    public IActionResult BookRoom(RoomInfo roomInfo)
+    [HttpPost("book")]
+    public async Task<IActionResult> Post(RoomBooking roomBooking)
     {
-        return Ok("Book room");
+        await _bookingService.BookRoomAsync(roomBooking);
+        return CreatedAtAction(nameof(Get), new { id = roomBooking.Id }, roomBooking);
+    }
+
+    [HttpGet("book/{id:int}")]
+    public async Task<IActionResult> Get(int id)
+    {
+        var booked = await _bookingService.GetBookedInfo(id);
+        if (booked == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(booked);
+    }
+
+    [HttpDelete("book/{id:int}")]
+    public async Task<IActionResult> Delete(int id)
+    {
+        await _bookingService.CancelBooking(id);
+        return NoContent();
     }
 }

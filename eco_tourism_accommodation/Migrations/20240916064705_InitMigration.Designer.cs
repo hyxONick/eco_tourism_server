@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using eco_tourism_accommodation.DB;
 
@@ -11,9 +12,11 @@ using eco_tourism_accommodation.DB;
 namespace eco_tourism_accommodation.Migrations
 {
     [DbContext(typeof(EcoTourismAccommodationContext))]
-    partial class EcoTourismAccommodationContextModelSnapshot : ModelSnapshot
+    [Migration("20240916064705_InitMigration")]
+    partial class InitMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
