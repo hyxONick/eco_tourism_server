@@ -24,14 +24,19 @@ namespace eco_tourism_gateway.Migrations
 
             modelBuilder.Entity("eco_tourism_gateway.DB.EventLog", b =>
                 {
-                    b.Property<int>("CaseId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("CaseId"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CaseId")
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Resource")
-                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Role")
                         .HasColumnType("longtext");
 
                     b.Property<string>("TaskId")
@@ -41,7 +46,7 @@ namespace eco_tourism_gateway.Migrations
                     b.Property<DateTime>("Timestamp")
                         .HasColumnType("datetime(6)");
 
-                    b.HasKey("CaseId");
+                    b.HasKey("Id");
 
                     b.ToTable("eco_tourism_tourist_EventLog", (string)null);
                 });

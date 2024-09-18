@@ -12,7 +12,7 @@ using eco_tourism_gateway.DB;
 namespace eco_tourism_gateway.Migrations
 {
     [DbContext(typeof(EcoEventLogContext))]
-    [Migration("20240911010344_InitialCreate")]
+    [Migration("20240918014232_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -27,23 +27,29 @@ namespace eco_tourism_gateway.Migrations
 
             modelBuilder.Entity("eco_tourism_gateway.DB.EventLog", b =>
                 {
-                    b.Property<int>("CaseId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("CaseId"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Resource")
-                        .IsRequired()
+                    b.Property<string>("CaseId")
                         .HasColumnType("longtext");
 
-                    b.Property<int>("TaskId")
-                        .HasColumnType("int");
+                    b.Property<string>("Resource")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Role")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("TaskId")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<DateTime>("Timestamp")
                         .HasColumnType("datetime(6)");
 
-                    b.HasKey("CaseId");
+                    b.HasKey("Id");
 
                     b.ToTable("eco_tourism_tourist_EventLog", (string)null);
                 });

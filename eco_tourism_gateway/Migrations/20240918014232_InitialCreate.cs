@@ -19,16 +19,21 @@ namespace eco_tourism_gateway.Migrations
                 name: "eco_tourism_tourist_EventLog",
                 columns: table => new
                 {
-                    CaseId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    TaskId = table.Column<int>(type: "int", nullable: false),
+                    CaseId = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    TaskId = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     Timestamp = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    Resource = table.Column<string>(type: "longtext", nullable: false)
+                    Resource = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Role = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_eco_tourism_tourist_EventLog", x => x.CaseId);
+                    table.PrimaryKey("PK_eco_tourism_tourist_EventLog", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
         }
