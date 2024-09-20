@@ -10,10 +10,13 @@ namespace eco_tourism_gateway.DB
         {
             [Key]
             [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-            public int CaseId { get; set; }
+            public int Id { get; set; }
+            public string? CaseId { get; set; }
             public required string TaskId { get; set; }
-            public required DateTime Timestamp { get; set; }
-            public required string Resource { get; set; }
+            public required DateTime StartTimestamp { get; set; }
+            public required DateTime EndTimestamp { get; set; }
+            public string? Resource { get; set; }
+            public string? Role { get; set; }
         }
 
     public class EcoEventLogContext : DbContext

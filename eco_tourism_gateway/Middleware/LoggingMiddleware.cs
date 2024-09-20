@@ -6,6 +6,7 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using eco_tourism_gateway.DB;
+using Microsoft.AspNetCore.Identity;
 namespace eco_tourism_gateway.Middleware
 {
     public class LoggingMiddleware
@@ -67,20 +68,46 @@ namespace eco_tourism_gateway.Middleware
                 // Console.WriteLine($"Scheme: {scheme}");
                 // Console.WriteLine($"Host: {host}");
 
-                // Create log record
-                var logEntry = new EventLog
-                {
-                    TaskId = Guid.NewGuid().ToString(), // Generate unique TaskId
-                    Timestamp = DateTime.UtcNow,
-                    Resource = $"{requestMethod} {requestPath}"
-                };
-                // Save logs to the database
-                dbContext.EventLogs.Add(logEntry);
-                await dbContext.SaveChangesAsync();
-            }
+                var EventLogDetailMap = new Dictionary<string, object>
+                    {
+                        ["/weather/weatherInfo"] = new { CaseId = "456", Resource = "TOKEN", Role = "USER" }
+                    };
+                var matchedKey = EventLogDetailMap.Keys.FirstOrDefault(k => requestPath.ToString().Contains(k));
+                var startTime = DateTime.UtcNow;
 
-            // 调用下一个中间件
-            await _next(context);
+                // do next middleware
+                await _next(context);
+                
+                // Create log record
+                EventLog? logEntry = null;
+                if (matchedKey != null && EventLogDetailMap.TryGetValue(matchedKey, out var details))
+                {
+                    var detailValues = (dynamic)details;  // Use dynamic to access anonymous type properties
+                    Console.WriteLine($"matchedKey: {matchedKey}");
+                    // Create log entry only when a match is found
+                    logEntry = new EventLog
+                    {
+                        TaskId = Guid.NewGuid().ToString(), // Generate unique TaskId
+                        StartTimestamp = startTime,
+                        EndTimestamp = DateTime.UtcNow,
+                        Resource = $"{requestMethod} {requestPath} {detailValues.Resource}",
+                        CaseId = detailValues.CaseId,
+                        Role = detailValues.Role
+                    };
+                    dbContext.EventLogs.Add(logEntry);
+                    await dbContext.SaveChangesAsync();
+                }
+                // Create log record
+                // var logEntry = new EventLog
+                // {
+                //     CaseId = null, // map case id
+                //     TaskId = Guid.NewGuid().ToString(), // Generate unique TaskId
+                //     Timestamp = DateTime.UtcNow,
+                //     Resource = $"{requestMethod} {requestPath}",
+                //     Role = null
+                // };
+                // Save logs to the database
+            }
         }
     }
 }
