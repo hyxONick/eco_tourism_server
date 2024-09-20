@@ -73,7 +73,11 @@ namespace eco_tourism_gateway.Middleware
                         ["/weather/weatherInfo"] = new { CaseId = "456", Resource = "TOKEN", Role = "USER" }
                     };
                 var matchedKey = EventLogDetailMap.Keys.FirstOrDefault(k => requestPath.ToString().Contains(k));
+                var startTime = DateTime.UtcNow;
 
+                // do next middleware
+                await _next(context);
+                
                 // Create log record
                 EventLog? logEntry = null;
                 if (matchedKey != null && EventLogDetailMap.TryGetValue(matchedKey, out var details))
@@ -84,7 +88,8 @@ namespace eco_tourism_gateway.Middleware
                     logEntry = new EventLog
                     {
                         TaskId = Guid.NewGuid().ToString(), // Generate unique TaskId
-                        Timestamp = DateTime.UtcNow,
+                        StartTimestamp = startTime,
+                        EndTimestamp = DateTime.UtcNow,
                         Resource = $"{requestMethod} {requestPath} {detailValues.Resource}",
                         CaseId = detailValues.CaseId,
                         Role = detailValues.Role
@@ -103,9 +108,6 @@ namespace eco_tourism_gateway.Middleware
                 // };
                 // Save logs to the database
             }
-
-            // 调用下一个中间件
-            await _next(context);
         }
     }
 }

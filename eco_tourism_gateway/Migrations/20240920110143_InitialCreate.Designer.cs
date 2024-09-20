@@ -12,7 +12,7 @@ using eco_tourism_gateway.DB;
 namespace eco_tourism_gateway.Migrations
 {
     [DbContext(typeof(EcoEventLogContext))]
-    [Migration("20240918014232_InitialCreate")]
+    [Migration("20240920110143_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -36,18 +36,21 @@ namespace eco_tourism_gateway.Migrations
                     b.Property<string>("CaseId")
                         .HasColumnType("longtext");
 
+                    b.Property<DateTime>("EndTimestamp")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<string>("Resource")
                         .HasColumnType("longtext");
 
                     b.Property<string>("Role")
                         .HasColumnType("longtext");
 
+                    b.Property<DateTime>("StartTimestamp")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<string>("TaskId")
                         .IsRequired()
                         .HasColumnType("longtext");
-
-                    b.Property<DateTime>("Timestamp")
-                        .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
 

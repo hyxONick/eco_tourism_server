@@ -13,7 +13,8 @@ namespace eco_tourism_gateway.DB
             public int Id { get; set; }
             public string? CaseId { get; set; }
             public required string TaskId { get; set; }
-            public required DateTime Timestamp { get; set; }
+            public required DateTime StartTimestamp { get; set; }
+            public required DateTime EndTimestamp { get; set; }
             public string? Resource { get; set; }
             public string? Role { get; set; }
         }

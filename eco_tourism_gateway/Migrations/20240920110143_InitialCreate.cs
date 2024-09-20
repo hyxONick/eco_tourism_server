@@ -25,7 +25,8 @@ namespace eco_tourism_gateway.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     TaskId = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Timestamp = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    StartTimestamp = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    EndTimestamp = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     Resource = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Role = table.Column<string>(type: "longtext", nullable: true)
