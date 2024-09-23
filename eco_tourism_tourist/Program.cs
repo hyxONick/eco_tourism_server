@@ -6,7 +6,6 @@ using System.Diagnostics; // Import the namespace for debugging output
 using Microsoft.EntityFrameworkCore;
 using eco_tourism_tourist.Services; // Import the namespace for Entity Framework Core, used for database context
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 if (builder.Environment.IsProduction())

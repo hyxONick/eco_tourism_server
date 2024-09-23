@@ -12,7 +12,7 @@ using eco_tourism_accommodation.DB;
 namespace eco_tourism_accommodation.Migrations
 {
     [DbContext(typeof(EcoTourismAccommodationContext))]
-    [Migration("20240915060523_InitialCreate")]
+    [Migration("20240923063429_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -24,6 +24,43 @@ namespace eco_tourism_accommodation.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
+
+            modelBuilder.Entity("eco_tourism_accommodation.Modules.RoomBooking", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CheckInDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("CheckOutDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("GuestId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int>("RoomId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("TotalAmount")
+                        .HasColumnType("double");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("eco_tourism_accommodation_RoomBooking", (string)null);
+                });
 
             modelBuilder.Entity("eco_tourism_accommodation.Modules.RoomInfo", b =>
                 {
