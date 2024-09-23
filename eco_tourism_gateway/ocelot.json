@@ -10,7 +10,7 @@
         }
       ],
       "UpstreamPathTemplate": "/user/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "OPTIONS" ],
+      "UpstreamHttpMethod": [ "GET", "POST", "OPTIONS", "DELETE"],
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "Auth0",
         "AllowedScopes": []
@@ -27,7 +27,7 @@
         }
       ],
       "UpstreamPathTemplate": "/tourist/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "OPTIONS" ],
+      "UpstreamHttpMethod": [ "GET", "POST", "OPTIONS", "DELETE" ],
       "SwaggerKey": "tourist"
     },
     {
@@ -40,7 +40,7 @@
         }
       ],
       "UpstreamPathTemplate": "/accommodation/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "OPTIONS" ],
+      "UpstreamHttpMethod": [ "GET", "POST", "OPTIONS", "DELETE" ],
       "SwaggerKey": "accommodation"
     },
     {
@@ -53,7 +53,7 @@
         }
       ],
       "UpstreamPathTemplate": "/weather/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "OPTIONS" ],
+      "UpstreamHttpMethod": [ "GET", "POST", "OPTIONS", "DELETE" ],
       "SwaggerKey": "weather"
     },
     {
@@ -66,7 +66,7 @@
         }
       ],
       "UpstreamPathTemplate": "/outdoor/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "OPTIONS" ],
+      "UpstreamHttpMethod": [ "GET", "POST", "OPTIONS", "DELETE" ],
       "SwaggerKey": "outdoor"
     }
   ],
