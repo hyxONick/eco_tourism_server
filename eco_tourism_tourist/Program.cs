@@ -26,7 +26,7 @@ builder.Services.AddMvc();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "User API", Version = "v1" });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Tourist API", Version = "v1" });
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
     {
         Name = "Authorization",
