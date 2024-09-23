@@ -1,102 +1,77 @@
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
-using Microsoft.EntityFrameworkCore;
-using eco_tourism_gateway.DB;
-using eco_tourism_gateway.Middleware;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Microsoft.Extensions.Options;
+using MMLib.SwaggerForOcelot.Configuration;
+using Microsoft.OpenApi.Models;
+using Ocelot.Values;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// builder.WebHost.UseUrls("http://0.0.0.0:80");
-if (builder.Environment.IsProduction())
-{
-    builder.WebHost.UseUrls("http://0.0.0.0:80");
-    builder.Configuration.AddJsonFile("ocelot-production.json", optional: false, reloadOnChange: true);
-} else {
-    builder.Configuration.AddJsonFile("ocelot.json", optional: false, reloadOnChange: true);
-}
+// Load configuration from appsettings.json
+var auth0Settings = builder.Configuration.GetSection("Auth0");
 
-// var envFile = builder.Environment.IsDevelopment() ? "ocelot.json" : "ocelot-production.json";
-// builder.Configuration.AddJsonFile(envFile, optional: false, reloadOnChange: true);
+builder.Configuration.AddJsonFile("ocelot.json");
+    //.AddJsonFile("ocelot.development.json");
 
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+
+// Add Ocelot services
 builder.Services.AddOcelot();
 
-// builder.Services.AddReverseProxy()
-//     .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
+// Register the SwaggerForOcelot generator
+builder.Services.AddSwaggerForOcelot(builder.Configuration);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+// Configure JWT authentication with Auth0
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer("Auth0", options => 
+    {
+        options.Authority = $"https://{auth0Settings["Domain"]}/";
+        options.Audience = auth0Settings["Audience"];
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true
+        };
+    });
 
-var connectionString = "server=localhost;database=eco_tourism;user=root;password=root"; // MySQL database connection string
-
-builder.Services.AddDbContext<EcoEventLogContext>(options =>
-    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
-
-// Configure CORS to allow all origins
+// Add CORS policy
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll",
         policy =>
         {
-            policy.AllowAnyOrigin() // Allow all origins
-                  .AllowAnyHeader() // Allow all headers
-                  .AllowAnyMethod(); // Allow all HTTP methods
+            policy.AllowAnyOrigin()
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
         });
 });
 
 var app = builder.Build();
 
-// // Logger Event
-// app.Use(async (context, next) =>
-// {
-//     var requestPath = context.Request.Path;
-//     var requestMethod = context.Request.Method;
+app.UseRouting();
+app.UseSwagger();
+//app.UseEndpoints(endpoints =>
+//{
+//    endpoints.MapControllers();
+//});
 
-//     Console.WriteLine($"Request Path: {requestPath}, Request Method: {requestMethod}");
+// Use authentication and authorization
+app.UseAuthentication();
+app.UseAuthorization();
 
-
-//     await next();
-// });
-
-// Use the custom request logging middleware
-app.UseMiddleware<LoggingMiddleware>();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+// Use the SwaggerForOcelot UI
+app.UseSwaggerForOcelotUI(opt =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
-// app.UseHttpsRedirection();
-
-await app.UseOcelot();
-
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
-
+    opt.PathToSwaggerGenerator = "/swagger/docs";
+});
 app.UseCors("AllowAll"); // Apply the CORS policy
-app.Run();
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
+// Use Ocelot middleware
+await app.UseOcelot();
+app.Run();

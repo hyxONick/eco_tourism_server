@@ -2,11 +2,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using eco_tourism_tourist.Services;
 using eco_tourism_tourist.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace eco_tourism_tourist.Controllers 
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
+    [Authorize]
     public class SceneryInfoController : ControllerBase
     {
         private readonly ISceneryInfoService _sceneryInfoService;

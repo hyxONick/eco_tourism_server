@@ -1,68 +1,129 @@
 {
-    "Routes": [
-      {
-        "DownstreamPathTemplate": "/{everything}",
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 8091
-          }
-        ],
-        "UpstreamPathTemplate": "/user/{everything}",
-        "UpstreamHttpMethod": [ "GET", "POST", "OPTIONS" ]
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8091
+        }
+      ],
+      "UpstreamPathTemplate": "/user/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "OPTIONS" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Auth0",
+        "AllowedScopes": []
       },
-      {
-        "DownstreamPathTemplate": "/{everything}",
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 8092
-          }
-        ],
-        "UpstreamPathTemplate": "/tourist/{everything}",
-        "UpstreamHttpMethod": [ "GET", "POST", "OPTIONS" ]
-      },
-      {
-        "DownstreamPathTemplate": "/{everything}",
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 8093
-          }
-        ],
-        "UpstreamPathTemplate": "/accommodation/{everything}",
-        "UpstreamHttpMethod": [ "GET", "POST", "OPTIONS" ]
-      },
-      {
-        "DownstreamPathTemplate": "/{everything}",
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 8094
-          }
-        ],
-        "UpstreamPathTemplate": "/weather/{everything}",
-        "UpstreamHttpMethod": [ "GET", "POST", "OPTIONS" ]
-      },
-      {
-        "DownstreamPathTemplate": "/{everything}",
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 8095
-          }
-        ],
-        "UpstreamPathTemplate": "/outdoor/{everything}",
-        "UpstreamHttpMethod": [ "GET", "POST", "OPTIONS" ]
-      }
-    ],
-    "GlobalConfiguration": {
-      "BaseUrl": "http://localhost:8090"
+      "SwaggerKey": "user"
+    },
+    {
+      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8092
+        }
+      ],
+      "UpstreamPathTemplate": "/tourist/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "OPTIONS" ],
+      "SwaggerKey": "tourist"
+    },
+    {
+      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8093
+        }
+      ],
+      "UpstreamPathTemplate": "/accommodation/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "OPTIONS" ],
+      "SwaggerKey": "accommodation"
+    },
+    {
+      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8094
+        }
+      ],
+      "UpstreamPathTemplate": "/weather/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "OPTIONS" ],
+      "SwaggerKey": "weather"
+    },
+    {
+      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8095
+        }
+      ],
+      "UpstreamPathTemplate": "/outdoor/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "OPTIONS" ],
+      "SwaggerKey": "outdoor"
     }
+  ],
+  "SwaggerEndPoints": [
+    {
+      "Key": "user",
+      "Config": [
+        {
+          "Name": "User API",
+          "Version": "v1",
+          "Url": "http://localhost:8091/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "tourist",
+      "Config": [
+        {
+          "Name": "Tourist API",
+          "Version": "v1",
+          "Url": "http://localhost:8092/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "accommodation",
+      "Config": [
+        {
+          "Name": "Accommodation API",
+          "Version": "v1",
+          "Url": "http://localhost:8093/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "weather",
+      "Config": [
+        {
+          "Name": "Weather API",
+          "Version": "v1",
+          "Url": "http://localhost:8094/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "outdoor",
+      "Config": [
+        {
+          "Name": "Outdoor API",
+          "Version": "v1",
+          "Url": "http://localhost:8095/swagger/v1/swagger.json"
+        }
+      ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost"
   }
+}
   

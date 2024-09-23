@@ -14,14 +14,18 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eco_tourism_outdoor", "eco_tourism_outdoor\eco_tourism_outdoor.csproj", "{4257378F-E5C2-4689-A565-709F8D9650AB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eco_tourism_gateway", "eco_tourism_gateway\eco_tourism_gateway.csproj", "{222B9459-5007-48BD-BC02-78CBE9C6C00C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{37DB6937-1F52-415E-A958-1CF971A75FE0} = {37DB6937-1F52-415E-A958-1CF971A75FE0}
+		{3AEE4373-8303-4204-8EA0-6F7DA9570F81} = {3AEE4373-8303-4204-8EA0-6F7DA9570F81}
+		{4257378F-E5C2-4689-A565-709F8D9650AB} = {4257378F-E5C2-4689-A565-709F8D9650AB}
+		{93F95DE9-AA40-4B29-9AC7-F63507FEA63E} = {93F95DE9-AA40-4B29-9AC7-F63507FEA63E}
+		{F4E477DD-8280-47B3-8DE9-BD657980C100} = {F4E477DD-8280-47B3-8DE9-BD657980C100}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{37DB6937-1F52-415E-A958-1CF971A75FE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -48,5 +52,11 @@ Global
 		{222B9459-5007-48BD-BC02-78CBE9C6C00C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{222B9459-5007-48BD-BC02-78CBE9C6C00C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{222B9459-5007-48BD-BC02-78CBE9C6C00C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ED31CCA2-AD35-4DC2-9F4D-1FF74175968D}
 	EndGlobalSection
 EndGlobal

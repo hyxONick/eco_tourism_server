@@ -3,11 +3,13 @@ using eco_tourism_tourist.Models;
 using eco_tourism_tourist.Services;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace eco_tourism_tourist.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
+    [Authorize]
     public class TouristInfoController : ControllerBase
     {
         private readonly ITouristInfoService _touristInfoService;

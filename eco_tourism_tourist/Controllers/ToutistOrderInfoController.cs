@@ -1,11 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
 using eco_tourism_tourist.Models;
 using eco_tourism_tourist.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace eco_tourism_tourist.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
+    [Authorize]
     public class TouristOrderInfoController : ControllerBase
     {
         private readonly ITouristOrderInfoService _touristOrderInfoService;

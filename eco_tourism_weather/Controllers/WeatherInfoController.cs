@@ -2,11 +2,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using eco_tourism_weather.Services;
 using eco_tourism_weather.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace eco_tourism_weather.Controllers 
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
+    [Authorize]
     public class WeatherInfoController : ControllerBase
     {
         private readonly IWeatherInfoService _weatherInfoService;
