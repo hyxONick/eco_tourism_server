@@ -17,7 +17,7 @@ public class SceneryInfoService(EcoTourismTouristContext context) : ISceneryInfo
 {
     private readonly EcoTourismTouristContext _context = context;
 
-        public async Task<List<SceneryInfo>> GetAllAsync()
+    public async Task<List<SceneryInfo>> GetAllAsync()
     {
         return await _context.SceneryInfos
             .Where(s => !s.IsDeleted)

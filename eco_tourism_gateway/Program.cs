@@ -27,6 +27,7 @@ builder.Services.AddOcelot();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddHttpClient();
 
 var connectionString = "server=localhost;database=eco_tourism;user=root;password=root"; // MySQL database connection string
 
@@ -58,6 +59,9 @@ var app = builder.Build();
 
 //     await next();
 // });
+
+// Use the token validation middleware
+app.UseMiddleware<TokenValidationMiddleware>();
 
 // Use the custom request logging middleware
 app.UseMiddleware<LoggingMiddleware>();
