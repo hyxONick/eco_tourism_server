@@ -56,12 +56,11 @@ namespace eco_tourism_gateway.Middleware {
 
         // Define paths that do not require token validation
         private static readonly string[] _publicPaths = { 
-            "/api/User/register", 
-            "/api/User/login", 
+            "/user/api/User/register", 
+            "/user/api/User/login", 
             "/swagger",               // Swagger UI base path
             "/swagger/",              // Swagger UI sub-paths (if necessary)
             "/swagger/v1/swagger.json" // Swagger JSON endpoint
-            
             };
 
         public TokenValidationMiddleware(RequestDelegate next, HttpClient httpClient)
@@ -72,8 +71,10 @@ namespace eco_tourism_gateway.Middleware {
 
         public async Task InvokeAsync(HttpContext context)
         {
+            Console.WriteLine($"Request Path123456: {context.Request.Path}");
             // Check if the request path requires token validation
-            if (IsPublicPath(context.Request.Path))
+            var isNeedVaild = IsPublicPath(context.Request.Path);
+            if (isNeedVaild)
             {
                 await _next(context); // Skip token validation
                 return;
@@ -82,7 +83,7 @@ namespace eco_tourism_gateway.Middleware {
             // Retrieve the token from the Authorization header
             var authorizationHeader = context.Request.Headers["Authorization"].ToString();
 
-            if (string.IsNullOrWhiteSpace(authorizationHeader))
+            if (string.IsNullOrWhiteSpace(authorizationHeader) && !isNeedVaild)
             {
                 context.Response.StatusCode = StatusCodes.Status401Unauthorized; // Unauthorized
                 await context.Response.WriteAsync("Token is missing");
@@ -124,10 +125,14 @@ namespace eco_tourism_gateway.Middleware {
 
         private bool IsPublicPath(PathString path)
         {
+            // Decode the URL in case it's encoded
+            string pathString = Uri.UnescapeDataString(path.ToString().Trim());
+            Console.WriteLine($"Decoded Request Path: {pathString}");
+            
             // Check if the request path is in the list of public paths
             foreach (var publicPath in _publicPaths)
             {
-                if (path.StartsWithSegments(publicPath, StringComparison.OrdinalIgnoreCase))
+                if (pathString.StartsWith(publicPath, StringComparison.OrdinalIgnoreCase))
                 {
                     return true;
                 }
