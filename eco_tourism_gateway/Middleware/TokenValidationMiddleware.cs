@@ -56,8 +56,8 @@ namespace eco_tourism_gateway.Middleware {
 
         // Define paths that do not require token validation
         private static readonly string[] _publicPaths = { 
-            "/api/user/register", 
-            "/api/user/login", 
+            "/api/User/register", 
+            "/api/User/login", 
             "/swagger",               // Swagger UI base path
             "/swagger/",              // Swagger UI sub-paths (if necessary)
             "/swagger/v1/swagger.json" // Swagger JSON endpoint
