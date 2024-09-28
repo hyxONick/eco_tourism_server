@@ -29,7 +29,7 @@ namespace eco_tourism_gateway.Middleware
                 // Capture request information
                 var requestPath = context.Request.Path;
                 var requestMethod = context.Request.Method;
-
+                var requestResource = "";
                 // Header
                 // var headers = context.Request.Headers;
                 // foreach (var header in headers)
@@ -70,10 +70,18 @@ namespace eco_tourism_gateway.Middleware
 
                 var EventLogDetailMap = new Dictionary<string, object>
                     {
-                        ["/weather/weatherInfo"] = new { CaseId = "456", Resource = "TOKEN", Role = "USER" }
+                        ["/weather/weatherInfo"] = new { CaseId = "456", Role = "USER" }
                     };
                 var matchedKey = EventLogDetailMap.Keys.FirstOrDefault(k => requestPath.ToString().Contains(k));
                 var startTime = DateTime.UtcNow;
+
+                var authorizationHeader = context.Request.Headers["Authorization"].ToString();
+                if (!string.IsNullOrWhiteSpace(authorizationHeader))
+                {
+                    var parts = authorizationHeader.Split(' ');
+                    // userId token
+                    requestResource = parts[1] + ' ' + parts[2]; 
+                }
 
                 // do next middleware
                 await _next(context);
@@ -90,7 +98,7 @@ namespace eco_tourism_gateway.Middleware
                         TaskId = Guid.NewGuid().ToString(), // Generate unique TaskId
                         StartTimestamp = startTime,
                         EndTimestamp = DateTime.UtcNow,
-                        Resource = $"{requestMethod} {requestPath} {detailValues.Resource}",
+                        Resource = $"{requestResource}",
                         CaseId = detailValues.CaseId,
                         Role = detailValues.Role
                     };

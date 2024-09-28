@@ -47,12 +47,13 @@
 using Microsoft.AspNetCore.Http;
 using System.Net.Http;
 using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
 
 namespace eco_tourism_gateway.Middleware {
         public class TokenValidationMiddleware
     {
         private readonly RequestDelegate _next;
-        private readonly HttpClient _httpClient;
+        private readonly string _connectionString;
 
         // Define paths that do not require token validation
         private static readonly string[] _publicPaths = { 
@@ -63,15 +64,15 @@ namespace eco_tourism_gateway.Middleware {
             "/swagger/v1/swagger.json" // Swagger JSON endpoint
             };
 
-        public TokenValidationMiddleware(RequestDelegate next, HttpClient httpClient)
+        public TokenValidationMiddleware(RequestDelegate next)
         {
             _next = next;
-            _httpClient = httpClient;
+            _connectionString = "server=localhost;database=eco_tourism;user=root;password=root";
         }
 
         public async Task InvokeAsync(HttpContext context)
         {
-            Console.WriteLine($"Request Path123456: {context.Request.Path}");
+            Console.WriteLine($"Request Path: {context.Request.Path}");
             // Check if the request path requires token validation
             var isNeedVaild = IsPublicPath(context.Request.Path);
             if (isNeedVaild)
@@ -111,7 +112,7 @@ namespace eco_tourism_gateway.Middleware {
             var token = parts[2];
 
             // Call the user service's validation endpoint
-            var isValid = await ValidateTokenAsync(userId, token);
+            var isValid = await ValidateTokenFromDatabaseAsync(userId, token);
 
             if (!isValid)
             {
@@ -140,14 +141,35 @@ namespace eco_tourism_gateway.Middleware {
             return false;
         }
 
-        private async Task<bool> ValidateTokenAsync(int userId, string token)
+        private async Task<bool> ValidateTokenFromDatabaseAsync(int userId, string token)
         {
-            // Call the user service's validation API
-            var request = new HttpRequestMessage(HttpMethod.Get, $"http://localhost:8091/api/user/{userId}/validate-token?token={token}");
+            var query = "SELECT COUNT(1) FROM `eco_tourism_user_userinfo` WHERE Id = @UserId AND Token = @Token";
 
-            var response = await _httpClient.SendAsync(request);
+            try
+            {
+                using (var connection = new MySqlConnection(_connectionString))
+                {
+                    await connection.OpenAsync();
 
-            return response.IsSuccessStatusCode; // Return whether the validation was successful
+                    using (var command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@UserId", userId);
+                        command.Parameters.AddWithValue("@Token", token);
+
+                        // execute
+                        var result = await command.ExecuteScalarAsync();
+
+                        // Convert the result to long to avoid conversion errors
+                        return Convert.ToInt64(result) > 0; // If the result is greater than 0, the token is valid
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // throw error
+                Console.WriteLine($"Error validating token: {ex.Message}");
+                return false;
+            }
         }
     }
 
