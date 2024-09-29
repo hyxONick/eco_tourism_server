@@ -1,5 +1,5 @@
 using eco_tourism_accommodation.DB;
-using eco_tourism_accommodation.Modules;
+using eco_tourism_accommodation.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace eco_tourism_accommodation.Services;

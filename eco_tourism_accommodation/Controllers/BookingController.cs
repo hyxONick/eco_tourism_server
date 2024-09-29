@@ -1,4 +1,4 @@
-using eco_tourism_accommodation.Modules;
+using eco_tourism_accommodation.Models;
 using eco_tourism_accommodation.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -34,7 +34,7 @@ public class BookingController : ControllerBase
         return Ok(booked);
     }
 
-    [HttpDelete("book/{id:int}")]
+    [HttpPost("delete/{id:int}")]
     public async Task<IActionResult> Delete(int id)
     {
         await _bookingService.CancelBooking(id);

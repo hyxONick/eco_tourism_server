@@ -26,6 +26,7 @@ builder.Services.AddDbContext<EcoTourismAccommodationContext>(options =>
 builder.Services.AddScoped<IRewardService, RewardService>();
 builder.Services.AddScoped<IBookingService, BookingService>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
+builder.Services.AddScoped<IRoomInfoService, RoomInfoService>();
 
 // Configure CORS to allow all origins
 builder.Services.AddCors(options =>

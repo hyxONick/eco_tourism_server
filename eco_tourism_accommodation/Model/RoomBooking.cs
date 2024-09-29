@@ -1,4 +1,4 @@
-namespace eco_tourism_accommodation.Modules;
+namespace eco_tourism_accommodation.Models;
 
 public class RoomBooking
 {
