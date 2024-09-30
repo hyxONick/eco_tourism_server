@@ -24,8 +24,14 @@ dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```
 
-```startup:
-dotnet build
+```startup DEV:
+```Linux:
+chmod +x start_watch_apps.sh
+./start_watch_apps_linux.sh
+```
+```Win:
+start_watch_apps_win.bat
+```
 dotnet watch/run //hot update
 ```
 
