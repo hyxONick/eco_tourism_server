@@ -70,7 +70,27 @@ namespace eco_tourism_gateway.Middleware
 
                 var EventLogDetailMap = new Dictionary<string, object>
                     {
-                        ["/weather/weatherInfo"] = new { CaseId = "456", Role = "USER" }
+                        ["/tourist/SceneryInfo/fetch"] = new { CaseId = "110", Role = "USER" },
+                        ["/tourist/SceneryInfo/getSceneryInfo"] = new { CaseId = "110", Role = "USER" },
+                        ["/tourist/SceneryInfo/create"] = new { CaseId = "110", Role = "ADMIN" },
+                        ["/tourist/SceneryInfo/update"] = new { CaseId = "110", Role = "ADMIN" },
+                        ["/tourist/SceneryInfo/delete"] = new { CaseId = "110", Role = "ADMIN" },
+                        ["/tourist/SceneryInfo/search"] = new { CaseId = "110", Role = "ADMIN" },
+
+                        ["/tourist/TouristInfo/fetch"] = new { CaseId = "111", Role = "USER" },
+                        ["/tourist/TouristInfo/getTouristInfo"] = new { CaseId = "111", Role = "USER" },
+                        ["/tourist/TouristInfo/create"] = new { CaseId = "111", Role = "ADMIN" },
+                        ["/tourist/TouristInfo/update"] = new { CaseId = "111", Role = "ADMIN" },
+                        ["/tourist/TouristInfo/delete"] = new { CaseId = "111", Role = "ADMIN" },
+
+                        ["/tourist/TouristOrderInfo/fetch"] = new { CaseId = "112", Role = "USER" },
+                        ["/tourist/TouristOrderInfo/getTouristOrderInfo"] = new { CaseId = "112", Role = "USER" },
+                        ["/tourist/TouristOrderInfo/create"] = new { CaseId = "112", Role = "ADMIN" },
+                        ["/tourist/TouristOrderInfo/update"] = new { CaseId = "112", Role = "ADMIN" },
+                        ["/tourist/TouristOrderInfo/delete"] = new { CaseId = "112", Role = "ADMIN" },
+                        ["/tourist/TouristOrderInfo/search"] = new { CaseId = "110", Role = "ADMIN" },
+
+                        ["/weather/weatherInfo"] = new { CaseId = "456", Role = "USER" },
                     };
                 var matchedKey = EventLogDetailMap.Keys.FirstOrDefault(k => requestPath.ToString().Contains(k));
                 var startTime = DateTime.UtcNow;

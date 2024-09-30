@@ -21,7 +21,7 @@ namespace eco_tourism_tourist.Controllers
             return Ok(sceneryInfos);
         }
 
-        [HttpGet("{id:int}")]
+        [HttpGet("getSceneryInfo/{id:int}")]
         public async Task<IActionResult> Get(int id)
         {
             var sceneryInfo = await _sceneryInfoService.GetByIdAsync(id);

@@ -26,7 +26,7 @@ dotnet ef database update
 
 ```startup DEV:
 ```Linux:
-chmod +x start_watch_apps.sh
+chmod +x start_watch_apps_linux.sh
 ./start_watch_apps_linux.sh
 ```
 ```Win:

@@ -23,7 +23,7 @@ namespace eco_tourism_tourist.Controllers
             return Ok(await _touristInfoService.GetAllAsync());
         }
 
-        [HttpGet("{id:int}")]
+        [HttpGet("getTouristInfo/{id:int}")]
         public async Task<ActionResult<TouristInfo>> Get(int id)
         {
             var touristInfo = await _touristInfoService.GetByIdAsync(id);

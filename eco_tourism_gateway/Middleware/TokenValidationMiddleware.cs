@@ -59,7 +59,8 @@ namespace eco_tourism_gateway.Middleware {
         private static readonly string[] _publicPaths = { 
             "/user/api/User/register", 
             "/user/api/User/login", 
-            "tourist/SceneryInfo/fetch",
+            "/tourist/SceneryInfo/fetch",
+            "/weather/weatherInfo",
             "/swagger",               // Swagger UI base path
             "/swagger/",              // Swagger UI sub-paths (if necessary)
             "/swagger/v1/swagger.json" // Swagger JSON endpoint
