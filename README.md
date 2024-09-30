@@ -23,18 +23,17 @@ dotnet add package Microsoft.EntityFrameworkCore.Design
 dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```
-
-```startup DEV:
-```Linux:
+startup DEV:
+<br >
+Linux:
+```bash
 chmod +x start_watch_apps_linux.sh
 ./start_watch_apps_linux.sh
 ```
-```Win:
+Win:
+```bash
 start_watch_apps_win.bat
 ```
-dotnet watch/run //hot update
-```
-
 
 ## System Requirements
 
