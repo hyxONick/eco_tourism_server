@@ -33,7 +33,7 @@ namespace eco_tourism_outdoor.Controllers
             return Ok(rental);
         }
 
-        [HttpGet("{id:int}")]
+        [HttpGet("getEquipmentRental/{id:int}")]
         public async Task<IActionResult> Get(int id)
         {
             var rental = await _equipmentRentalService.GetByIdAsync(id);

@@ -33,7 +33,7 @@ namespace eco_tourism_outdoor.Controllers
             return Ok(orders);
         }
 
-        [HttpGet("{id:int}")]
+        [HttpGet("getProductOrderInfo/{id:int}")]
         public async Task<IActionResult> Get(int id)
         {
             var order = await _productOrderInfoService.GetByIdAsync(id);

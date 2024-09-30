@@ -24,7 +24,7 @@ namespace eco_tourism_accommodation.Controllers
         }
 
         // GET: RoomInfo/{id}
-        [HttpGet("{id:int}")]
+        [HttpGet("getRoomInfo/{id:int}")]
         public async Task<IActionResult> GetRoomById(int id)
         {
             var room = await _roomInfoService.GetRoomByIdAsync(id);

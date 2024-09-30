@@ -22,7 +22,7 @@ public class BookingController : ControllerBase
         return CreatedAtAction(nameof(Get), new { id = roomBooking.Id }, roomBooking);
     }
 
-    [HttpGet("book/{id:int}")]
+    [HttpGet("getBooking/{id:int}")]
     public async Task<IActionResult> Get(int id)
     {
         var booked = await _bookingService.GetBookedInfo(id);

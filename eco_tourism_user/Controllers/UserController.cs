@@ -5,7 +5,7 @@ using eco_tourism_user.Services;
 
 namespace eco_tourism_user.Controllers {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class UserController : ControllerBase
     {
         private readonly IUserInfoService _userService;
@@ -13,7 +13,7 @@ namespace eco_tourism_user.Controllers {
         public UserController(IUserInfoService userInfoService) => 
             _userService = userInfoService;
     
-        // POST: api/user/register
+        // POST: User/register
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterRequest request)
         {
@@ -37,7 +37,7 @@ namespace eco_tourism_user.Controllers {
             return CreatedAtAction(nameof(Login), new { username = user.Name }, user);
         }
 
-        // POST: api/user/login
+        // POST: User/login
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
@@ -49,8 +49,8 @@ namespace eco_tourism_user.Controllers {
             return Ok(user);
         }
 
-        // PUT: api/user/{userId}/rewards
-        [HttpPost("{userId}/rewards")]
+        // Post: User/rewards/{userId}
+        [HttpPost("rewards/{userId}")]
         public async Task<IActionResult> UpdateRewards(int userId, [FromBody] UpdateRewardsRequest request)
         {
             var user = await _userService.UpdateRewardsAsync(userId, request.PointsToAdd);
@@ -61,7 +61,7 @@ namespace eco_tourism_user.Controllers {
             return Ok(user);
         }
 
-        // GET: api/user/{userId}/validate-token
+        // GET: User/{userId}/validate-token
         [HttpGet("{userId}/validate-token")]
         public async Task<IActionResult> ValidateToken(int userId, [FromQuery] string token)
         {

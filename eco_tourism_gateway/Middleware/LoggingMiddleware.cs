@@ -90,7 +90,42 @@ namespace eco_tourism_gateway.Middleware
                         ["/tourist/TouristOrderInfo/delete"] = new { CaseId = "112", Role = "ADMIN" },
                         ["/tourist/TouristOrderInfo/search"] = new { CaseId = "110", Role = "ADMIN" },
 
-                        ["/weather/weatherInfo"] = new { CaseId = "456", Role = "USER" },
+                        ["/accommodation/booking/book"] = new { CaseId = "210", Role = "USER" },
+                        ["/accommodation/booking/getBooking"] = new { CaseId = "210", Role = "USER" },
+                        ["/accommodation/booking/delete"] = new { CaseId = "210", Role = "USER" },
+
+                        ["/accommodation/roominfo/fetch"] = new { CaseId = "211", Role = "USER" },
+                        ["/accommodation/roominfo/getRoomInfo"] = new { CaseId = "211", Role = "USER" },
+                        ["/accommodation/roominfo/create"] = new { CaseId = "211", Role = "ADMIN" },
+                        ["/accommodation/roominfo/update"] = new { CaseId = "211", Role = "ADMIN" },
+                        ["/accommodation/roominfo/delete"] = new { CaseId = "211", Role = "ADMIN" },
+
+                        ["/weather/weatherInfo"] = new { CaseId = "610", Role = "USER" },
+
+                        ["/outdoor/EquipmentRental/fetch"] = new { CaseId = "310", Role = "USER" },
+                        ["/outdoor/EquipmentRental/renter"] = new { CaseId = "310", Role = "USER" },
+                        ["/outdoor/EquipmentRental/getEquipmentRental"] = new { CaseId = "310", Role = "USER" },
+                        ["/outdoor/EquipmentRental/create"] = new { CaseId = "310", Role = "USER" },
+                        ["/outdoor/EquipmentRental/update"] = new { CaseId = "310", Role = "USER" },
+                        ["/outdoor/EquipmentRental/delete"] = new { CaseId = "310", Role = "USER" },
+
+                        ["/outdoor/ProductInfo/fetch"] = new { CaseId = "311", Role = "USER" },
+                        ["/outdoor/ProductInfo/getProductInfo"] = new { CaseId = "311", Role = "USER" },
+                        ["/outdoor/ProductInfo/create"] = new { CaseId = "311", Role = "ADMIN" },
+                        ["/outdoor/ProductInfo/update"] = new { CaseId = "311", Role = "ADMIN" },
+                        ["/outdoor/ProductInfo/delete"] = new { CaseId = "311", Role = "ADMIN" },
+
+                        ["/outdoor/ProductOrderInfo/fetch"] = new { CaseId = "312", Role = "USER" },
+                        ["/outdoor/ProductOrderInfo/getProductOrderInfo"] = new { CaseId = "312", Role = "USER" },
+                        ["/outdoor/ProductOrderInfo/buyer"] = new { CaseId = "312", Role = "USER" },
+                        ["/outdoor/ProductOrderInfo/create"] = new { CaseId = "312", Role = "USER" },
+                        ["/outdoor/ProductOrderInfo/update"] = new { CaseId = "312", Role = "USER" },
+                        ["/outdoor/ProductOrderInfo/delete"] = new { CaseId = "312", Role = "USER" },
+
+                        ["/user/User/register"] = new { CaseId = "410", Role = "USER" },
+                        ["/user/User/login"] = new { CaseId = "411", Role = "USER" },
+                        ["/user/User/rewards"] = new { CaseId = "412", Role = "ADMIN" }
+                        // ["/user/User/login"] = new { CaseId = "456", Role = "USER" },
                     };
                 var matchedKey = EventLogDetailMap.Keys.FirstOrDefault(k => requestPath.ToString().Contains(k));
                 var startTime = DateTime.UtcNow;

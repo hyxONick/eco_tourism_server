@@ -20,7 +20,7 @@ namespace eco_tourism_outdoor.Controllers
             return Ok(products);
         }
 
-        [HttpGet("{id:int}")]
+        [HttpGet("getProductInfo/{id:int}")]
         public async Task<IActionResult> Get(int id)
         {
             var product = await _productInfoService.GetByIdAsync(id);
