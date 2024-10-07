@@ -20,7 +20,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var connectionString = "server=localhost;database=eco_tourism;user=root;password=root"; // MySQL database connection string
+var connectionString = "server=localhost;database=eco_tourism;user=root;password=lwh971213"; // MySQL database connection string
 
 // Register the database context
 builder.Services.AddDbContext<EcoTourismUserContext>(options =>

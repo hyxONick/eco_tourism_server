@@ -8,8 +8,11 @@ public class SceneryInfo
     public string? Description { get; set; } // can empty
     public string Type { get; set; } = string.Empty;
     public string PicUrl { get; set; } = string.Empty;
+
+    public double Price { get; set; }
     public string? Longitude { get; set; } // can empty
     public string? Latitude { get; set; } // can empty
+
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
     public bool IsDeleted { get; set; }

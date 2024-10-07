@@ -16,7 +16,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var connectionString =
-    "server=localhost;database=eco_tourism;user=root;password=root";
+    "server=localhost;database=eco_tourism;user=root;password=lwh971213";
 
 // Register the database context
 builder.Services.AddDbContext<EcoTourismAccommodationContext>(options =>

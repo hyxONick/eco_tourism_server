@@ -29,7 +29,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHttpClient();
 
-var connectionString = "server=localhost;database=eco_tourism;user=root;password=root"; // MySQL database connection string
+var connectionString = "server=localhost;database=eco_tourism;user=root;password=lwh971213"; // MySQL database connection string
 
 builder.Services.AddDbContext<EcoEventLogContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using eco_tourism_tourist.DB;
 
@@ -11,9 +12,11 @@ using eco_tourism_tourist.DB;
 namespace eco_tourism_tourist.Migrations
 {
     [DbContext(typeof(EcoTourismTouristContext))]
-    partial class EcoTourismTouristContextModelSnapshot : ModelSnapshot
+    [Migration("20241006113346_AddSceneryInfoSeedData")]
+    partial class AddSceneryInfoSeedData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -57,9 +60,6 @@ namespace eco_tourism_tourist.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("double");
-
                     b.Property<string>("Type")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -80,7 +80,6 @@ namespace eco_tourism_tourist.Migrations
                             IsDeleted = false,
                             Name = "River Boat Cruise",
                             PicUrl = "https://images.unsplash.com/photo-1707007694363-b8afb46ed639?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                            Price = 10.5,
                             Type = "",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
