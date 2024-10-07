@@ -31,6 +31,7 @@ namespace eco_tourism_tourist.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     PicUrl = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    Price = table.Column<double>(type: "double", nullable: false),
                     Longitude = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Latitude = table.Column<string>(type: "longtext", nullable: true)

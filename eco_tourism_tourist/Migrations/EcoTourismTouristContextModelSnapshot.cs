@@ -57,6 +57,9 @@ namespace eco_tourism_tourist.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<double>("Price")
+                        .HasColumnType("double");
+
                     b.Property<string>("Type")
                         .IsRequired()
                         .HasColumnType("longtext");

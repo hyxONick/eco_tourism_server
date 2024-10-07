@@ -59,6 +59,7 @@ namespace eco_tourism_gateway.Middleware {
         private static readonly string[] _publicPaths = { 
             "/user/User/register", 
             "/user/User/login", 
+            "/accommodation/roominfo/fetch",
             "/tourist/SceneryInfo/fetch",
             "/outdoor/ProductInfo/fetch",
             "/weather/weatherInfo",

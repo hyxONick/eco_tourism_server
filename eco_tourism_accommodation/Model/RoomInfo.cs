@@ -8,6 +8,13 @@ public class RoomInfo
 
     public string RoomType { get; set; } = string.Empty;
 
+    public string Address { get; set; } = string.Empty;
+    
+    public int NumberOfBeds { get; set; }
+
+    public string PicUrl { get; set; } = string.Empty;
+    
+    public int Capacity { get; set; }
     public string Description { get; set; } = string.Empty;
 
     public double Price { get; set; }
@@ -18,5 +25,5 @@ public class RoomInfo
 
     public DateTime UpdatedAt { get; set; }
 
-    public bool IsDeleted { get; set; }
+    public bool IsDeleted { get; set; } = false;
 }

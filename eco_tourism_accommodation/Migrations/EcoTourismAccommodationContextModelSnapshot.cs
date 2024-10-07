@@ -22,7 +22,7 @@ namespace eco_tourism_accommodation.Migrations
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
-            modelBuilder.Entity("eco_tourism_accommodation.Modules.RoomBooking", b =>
+            modelBuilder.Entity("eco_tourism_accommodation.Models.RoomBooking", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -59,13 +59,20 @@ namespace eco_tourism_accommodation.Migrations
                     b.ToTable("eco_tourism_accommodation_RoomBooking", (string)null);
                 });
 
-            modelBuilder.Entity("eco_tourism_accommodation.Modules.RoomInfo", b =>
+            modelBuilder.Entity("eco_tourism_accommodation.Models.RoomInfo", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("Capacity")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");
@@ -79,6 +86,13 @@ namespace eco_tourism_accommodation.Migrations
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("tinyint(1)");
+
+                    b.Property<int>("NumberOfBeds")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PicUrl")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<double>("Price")
                         .HasColumnType("double");

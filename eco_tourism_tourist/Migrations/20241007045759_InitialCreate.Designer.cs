@@ -12,7 +12,7 @@ using eco_tourism_tourist.DB;
 namespace eco_tourism_tourist.Migrations
 {
     [DbContext(typeof(EcoTourismTouristContext))]
-    [Migration("20240903055217_InitialCreate")]
+    [Migration("20241007045759_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -59,6 +59,9 @@ namespace eco_tourism_tourist.Migrations
                     b.Property<string>("PicUrl")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("double");
 
                     b.Property<string>("Type")
                         .IsRequired()
