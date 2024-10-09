@@ -40,10 +40,10 @@ builder.Services.AddCors(options =>
         });
 });
 
-builder.Services.AddRouting(options =>
-{
-    options.LowercaseUrls = true;
-});
+// builder.Services.AddRouting(options =>
+// {
+//     options.LowercaseUrls = true;
+// });
 
 var app = builder.Build();
 

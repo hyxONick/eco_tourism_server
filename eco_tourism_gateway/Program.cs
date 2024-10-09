@@ -40,9 +40,12 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowAll",
         policy =>
         {
+            // policy.WithOrigins("http://localhost:3000")
             policy.AllowAnyOrigin() // Allow all origins
                   .AllowAnyHeader() // Allow all headers
                   .AllowAnyMethod(); // Allow all HTTP methods
+                //   .AllowCredentials();    //
+                //   .AllowCredentials();  //
         });
 });
 
@@ -75,7 +78,7 @@ if (app.Environment.IsDevelopment())
 
 // app.UseHttpsRedirection();
 
-await app.UseOcelot();
+
 
 var summaries = new[]
 {
@@ -98,6 +101,7 @@ app.MapGet("/weatherforecast", () =>
 .WithOpenApi();
 
 app.UseCors("AllowAll"); // Apply the CORS policy
+await app.UseOcelot();
 app.Run();
 
 record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)

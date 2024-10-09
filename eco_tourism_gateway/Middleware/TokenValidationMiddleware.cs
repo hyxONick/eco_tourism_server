@@ -59,8 +59,10 @@ namespace eco_tourism_gateway.Middleware {
         private static readonly string[] _publicPaths = { 
             "/user/User/register", 
             "/user/User/login", 
-            "/accommodation/roominfo/fetch",
+            "/accommodation/roomInfo/fetch",
+            // "/accommodation/roomInfo/getRoomInfo",
             "/tourist/SceneryInfo/fetch",
+            // "/tourist/SceneryInfo/create",
             "/outdoor/ProductInfo/fetch",
             "/weather/weatherInfo",
             "/swagger",               // Swagger UI base path
@@ -77,9 +79,11 @@ namespace eco_tourism_gateway.Middleware {
         public async Task InvokeAsync(HttpContext context)
         {
             Console.WriteLine($"Request Path: {context.Request.Path}");
+            Console.WriteLine($"context.Request.Headers[Authorization].ToString(): {context.Request.Headers}");
+            
             // Check if the request path requires token validation
-            var isNeedVaild = IsPublicPath(context.Request.Path);
-            if (isNeedVaild)
+            var isPublichPath = IsPublicPath(context.Request.Path);
+            if (isPublichPath || context.Request.Method.ToLower() == "options")
             {
                 await _next(context); // Skip token validation
                 return;
@@ -87,8 +91,8 @@ namespace eco_tourism_gateway.Middleware {
 
             // Retrieve the token from the Authorization header
             var authorizationHeader = context.Request.Headers["Authorization"].ToString();
-
-            if (string.IsNullOrWhiteSpace(authorizationHeader) && !isNeedVaild)
+            
+            if (string.IsNullOrWhiteSpace(authorizationHeader) && !isPublichPath)
             {
                 context.Response.StatusCode = StatusCodes.Status401Unauthorized; // Unauthorized
                 await context.Response.WriteAsync("Token is missing");
