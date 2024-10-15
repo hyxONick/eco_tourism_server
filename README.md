@@ -13,6 +13,29 @@ This project consists of multiple microservices for an eco-tourism application, 
 
 ## Development:
 
+In the Gateway Service, you need to add Ocelot
+```bash
+dotnet add package Ocelot
+dotnet add package Microsoft.ReverseProxy
+dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
+dotnet add package Microsoft.AspNetCore.OpenApi
+dotnet add package MySql.Data
+dotnet add package MySqlConnector
+dotnet add package Pomelo.EntityFrameworkCore.MySql
+```
+
+In the User Service, you need to add JWT module
+```bash
+dotnet add package Microsoft.IdentityModel.Tokens
+dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
+dotnet add package BCrypt.Net-Next
+```
+
+In the Weather, you need to add Json handler:
+```bash
+dotnet add package Newtonsoft.Json
+```
+
 When you completed the DB Model, you can pull migrations to MYSQL
 ```bash
 
